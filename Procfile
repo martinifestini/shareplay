@@ -1,1 +1,1 @@
-web: python shareplay.py
+worker: python shareplay.py

@@ -1,0 +1,2 @@
+https://github.com/plamere/spotipy/archive/master.zip
+slackclient

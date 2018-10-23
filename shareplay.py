@@ -5,14 +5,18 @@ import re
 
 from slackclient import SlackClient
 import spotipy
+import spotipy.util as util
 
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
 
 slack_token = os.getenv('SHAREPLAY_SLACK_TOKEN')
+username = os.getenv('SPOTIFY_USERNAME')
+scope = 'user-library-read streaming playlist-modify-private user-read-currently-playing user-modify-playback-state'
 sc = SlackClient(slack_token)
 
-spotify_token = os.getenv('SHAREPLAY_SPOTIFY_TOKEN')
+spotify_token = util.prompt_for_user_token(username, scope)
+# spotify_token = os.getenv('SHAREPLAY_SPOTIFY_TOKEN')
 sp = spotipy.Spotify(auth=spotify_token)
 
 """Bynder  Rotterdam Playlist"""
