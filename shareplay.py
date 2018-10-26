@@ -106,7 +106,7 @@ class ChatListener:
         if sc.rtm_connect(with_team_state=False):
             while True:
                 for event in self._parse_rtm(sc.rtm_read()):
-                    if event == None:
+                    if not isinstance(event, Event):
                         continue
                     response = event_bus.accept(event)
                     self.send(response, context=event.context)
@@ -148,6 +148,7 @@ class SpotifyMusicController(MusicController):
 
     def next(self, event):
         sp.next_track()
+        return "Skipped track, also deleted it"
 
     def volume(self, event):
         sp.volume(int(event.args))
